@@ -32,7 +32,11 @@
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
-	
+
+	<!-- easy autocomplete -->
+	{!! Html::style('assets/css/easy-autocomplete.min.css') !!}
+	{!! Html::style('assets/css/easy-autocomplete.themes.min.css') !!}
+
 	<!-- Animate.css -->
 	{!! Html::style('assets/css/animate.css') !!}
 
@@ -75,20 +79,12 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.html"><i class="icon-airplane"></i>Agencia de Viajes Guanacos</a></h1>
+					<h1 id="fh5co-logo"><a href="/nueva"><i class="icon-airplane"></i>Agencia de Viajes Guanacos</a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="index.html">Home</a></li>
-							<li>
-								<a href="vacation.html" class="fh5co-sub-ddown">Vacations</a>
-								<ul class="fh5co-sub-menu">
-									<li><a href="#">Family</a></li>
-								</ul>
-							</li>
-							<li><a href="flight.html">Flights</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li class="active"><a href="/nueva">Home</a></li>
+							<li><a href="/nueva">Vuelos</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -96,6 +92,7 @@
 		</header>
 
 		<!-- end:header-top -->
+		   @yield('content')
 	
 	
 		<footer>
@@ -143,7 +140,7 @@
 
 	<!-- jQuery -->
 
-
+    {!! Html::script('assets/js/jquery.easy-autocomplete.js') !!}
 	
 	{!! Html::script('assets/js/jquery.min.js') !!}
 	<!-- jQuery Easing -->
@@ -182,6 +179,46 @@
 	<!-- Main JS -->
 	
 	{!! Html::script('assets/js/main.js') !!}
+
+
+	{!! Html::style('assets/select2-4.0.6-rc.1/dist/css/select2.css') !!}
+	{!! Html::script('assets/select2-4.0.6-rc.1/dist/js/select2.js') !!}
+
+    <!-- <script type="text/javascript">
+    	$(function()
+    	{
+    		$("#q").autocomplete({
+    			source:"search/autocomplete",
+    			minLength:3,
+    			select: function(event, ui) {
+    			     $('#q').val(ui.item.value);
+    
+    			}
+    		});
+    
+    		$('#q').data( "ui-autocomplete" )._renderItem = function(ul, item)
+    		{
+    			var $li = $("<li style='width:800px'>"),
+    
+    		};
+    		$li.after('data-value',item.value);
+    		$li.append(item.value);
+    		return $li.appendTo(ul);
+    	
+    	});
+    </script>
+    
+     -->
+     <script type="text/javascript">
+     	$("#paiscy").select2({
+
+     	});
+     </script>
+      <script type="text/javascript">
+     	$("#paiscy2").select2({
+
+     	});
+     </script>
 
 	</body>
 </html>

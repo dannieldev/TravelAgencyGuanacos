@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('/nueva',  'nuevoController');
+Route::get('/reserva',  'nuevoController@reserva');
