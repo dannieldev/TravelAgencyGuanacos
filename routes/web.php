@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 Route::resource('/nueva',  'nuevoController');
 Route::get('/reserva',  'nuevoController@reserva');
+Route::get('/detalle',  'nuevoController@detalle');

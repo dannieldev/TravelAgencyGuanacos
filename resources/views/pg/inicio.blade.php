@@ -54,8 +54,8 @@
 													<select class="cs-select cs-skin-border" name='clase'>
 														<option value="" disabled selected>Economico</option>
 														<option value="Economico">Economico</option>
-														<option value="Publico">Publico</option>
-														<option value="Negocios">Negocios</option>
+														<option value="Ejecutiva">Ejecutiva</option>
+														<option value="Primera">Primera</option>
 													</select>
 												</section>
 											</div>

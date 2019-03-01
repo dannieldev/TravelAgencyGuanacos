@@ -13,6 +13,6 @@ class Ciudad extends Model
 
     protected $fillable =[ 'idciudad',
                            'pais_idpais',
-                           'nombre'];
+                           'nombrec'];
 
 }

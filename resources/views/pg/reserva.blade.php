@@ -13,49 +13,63 @@
 						<h2 class="heading-title">Vuelos Disponibles</h2>
 					</div>
 					<!-- dispo -->
-
+                  {!!Form::open(array('url'=>'/detalle','method'=>'GET','autocomplete'=>'off'))!!}
 					   <div class="col-md-12 animate-box">
-					     <a href="#" class="flight-book ">
+					     <a href="#" class="flight-book "><!-- Informacion de vuelos -->
 						     <div class="plane-name">
-								<p class="p-flight">Aerolinia</p>
-								<i class="icon-arrow-down22"></i>
+						     	<br>
+								<p class="p-flight">Aerolinia disponibles Economic Class</p>
 							 </div>
 							<div class="desc">
 								<div class="left">
-										<h4>{{ $cfrom->cpais }} <- {{ $cto->cpais }}</h4>
-										<span>Fecha</span>
-										<span>Hora</span>
+									    <br>
+										<h4 name="info">{{ $cfrom->cpais }} -> {{ $cto->cpais }}</h4>
+										<span>Fecha :</span>
+										<span>{{ $fecha }}</span>
+										<span>----</span>
+										<span>Hora :</span>
+										<span>{{ $hora }}</span>
 								</div>
 								<div class="right">
+									<br>
 								    <span class="price">
-										<i class="icon-arrow-down22"></i>
 										Precio
+										<i class="icon-arrow-down22"></i>
 									</span>
 								</div>
 							</div>
 					     </a>
+					     <a href="#" class="flight-book">
+							<div class="plane-name">		
+							</div>
+							<div class="desc">
+							</div>
+						</a>
+
 
 						<a href="#" class="flight-book">
 							<div class="plane-name">
-								<span class="p-flight">Aerolinia</span>
+								<span class="p-flight">Avianca</span>
 
 							</div>
 							<div class="desc">
 								<div class="left">
-									<h4>HK-MNL</h4>
-									<span>Dec 20 - Dec29</span>
+									<span>Duracion:</span>
+									<span>{{ $tiempo }}</span>
 								</div>
 								<div class="right">
 									<span class="price">
-										<i class="icon-arrow-down22"></i>
-										$1000
+										US$
+										{{$total }}
 									</span>
 								</div>
 							</div>
 						</a>
+						  @foreach ($destinos as $destino)
 						<a href="#" class="flight-book">
+
 							<div class="plane-name">
-								<span class="p-flight">Qatar Airways</span>
+								<span class="p-flight">{{ $destino->aerolinia }}</span>
 							</div>
 							<div class="desc">
 								<div class="left">
@@ -64,47 +78,17 @@
 								</div>
 								<div class="right">
 									<span class="price">
-										<i class="icon-arrow-down22"></i>
 										$790
 									</span>
+                                    <button type="submit" class="btn btn-primary btn-sm">Continuar</button>
+
 								</div>
 							</div>
 						</a>
-						<a href="#" class="flight-book">
-							<div class="plane-name">
-								<span class="p-flight">Philippine Airline</span>
-							</div>
-							<div class="desc">
-								<div class="left">
-									<h4>MNL-HK</h4>
-									<span>Dec 20 - Dec29</span>
-								</div>
-								<div class="right">
-									<span class="price">
-										<i class="icon-arrow-down22"></i>
-										$500
-									</span>
-								</div>
-							</div>
-						</a>
-						<a href="#" class="flight-book">
-							<div class="plane-name">
-								<span class="p-flight">China Airways</span>
-							</div>
-							<div class="desc">
-								<div class="left">
-									<h4>HK-LAS</h4>
-									<span>Dec 20 - Dec29</span>
-								</div>
-								<div class="right">
-									<span class="price">
-										<i class="icon-arrow-down22"></i>
-										$900
-									</span>
-								</div>
-							</div>
-						</a>
+						@endforeach
+
 					</div>
+					{!!Form::close()!!}
 					<!-- text -->
 						<!-- <div class="col-md-6 animate-box">
 						<div class="row">
