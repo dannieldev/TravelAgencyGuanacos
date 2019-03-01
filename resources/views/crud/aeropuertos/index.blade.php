@@ -12,7 +12,7 @@
             <tbody>
               @foreach ($puertos as $puerto)
                         <tr>
-                          <td>{{ $puerto ->idaerpueto }}</td> 
+                          <td>{{ $puerto ->idaerpuerto }}</td> 
                           <td>{{ $puerto ->nombrepu }}</td>
                           <td>
                             <a href="{{-- {{URL::action('registrosController@edit',$reporte->idarticulo)}} --}}"><button class="btn btn-outline-primary">Editar</button></a>

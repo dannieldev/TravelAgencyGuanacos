@@ -8,8 +8,8 @@ class Aeropuerto extends Model
 {
     //
     protected $table ='aerpuertos';
-    protected $primaryKey ='idaerpueto';
-    protected $fillable =['idaeropuerto',
+    protected $primaryKey ='idaerpuerto';
+    protected $fillable =['idaerpuerto',
                           'nombrepu',
                           'ciudad_idciudad'];
 }

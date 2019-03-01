@@ -6,6 +6,7 @@
             <tr>             
                <th>ID</th>
                <th>Nombre</th>
+               <th>Pais</th>
                <th>Editar</th>                      
             </tr>
           </thead>
@@ -14,6 +15,7 @@
                         <tr>
                           <td>{{ $city ->idciudad }}</td> 
                           <td>{{ $city ->nombrec }}</td>
+                          <td>{{ $city ->pais_idpais }}</td>
                           <td>
                             <a href="{{-- {{URL::action('registrosController@edit',$reporte->idarticulo)}} --}}"><button class="btn btn-outline-primary">Editar</button></a>
                             <a href="" data-target="#modal-delete-{{--{{$reporte->idarticulo}} --}}" data-toggle="modal"><button class="btn btn-outline-danger">Eliminar</button></a>

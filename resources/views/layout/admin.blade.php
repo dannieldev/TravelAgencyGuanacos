@@ -39,6 +39,7 @@
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li><a  href="/">Login</a></li>
 							<li><a href="/register">Register</a></li>
+							<li><a href="/admins/register">Administrador</a></li>
 						</ul>
 					</nav>
 				</div>
