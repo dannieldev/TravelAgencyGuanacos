@@ -210,7 +210,7 @@ class nuevoController extends Controller
     }
     public function edit(Request $request,$destino){
 
-
+      $destino=$destino;
       $depais=$request->get('depais');
       $apais=$request->get('apais');
       $hora=$request->get('hora');
@@ -223,8 +223,9 @@ class nuevoController extends Controller
                                  'apais'=>$apais,
                                  'hora'=>$hora,
                                  'fecha'=>$fecha,
-                                'clase'=>$clase,
-                                 'total'=>$total]);
+                                 'clase'=>$clase,
+                                 'total'=>$total,
+                                 'destino'=>$destino]);
     }
     public function store(Request $request){
 
