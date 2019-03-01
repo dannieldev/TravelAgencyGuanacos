@@ -81,42 +81,45 @@ class nuevoController extends Controller
           ->join('aerpuertos as ae','aerpuerto_id','=','idaerpuerto')
           ->join('aerolineas as a','aerolinea_id','=','idaerolinea')
           ->join('aerpuertos as aep','aerpuertos_idaerpuerto','=','aep.idaerpuerto')
-          ->select('ae.nombrepu as aeropuerto','a.nombreli as aerolinia','aep.nombrepu as destino','ae.ciudad_idciudad as cinicio','aep.ciudad_idciudad as cdestino')
+          ->select('ae.nombrepu as aeropuerto','a.nombreli as aerolinia','aep.nombrepu as destino','ae.ciudad_idciudad as cinicio','aep.ciudad_idciudad as cdestino','id_aerolipu')
           /*->where('ae.ciudad_idciudad','LIKE','%'.$ciudadD.'%')
           ->where('aep.ciudad_idciudad','LIKE','%'.$ciudadP.'%')*/
           ->get();
 
 
-    /*Calcular los kilometros en los paises*/
-                $unit = "K";
-                $addressFrom = $ciud->nombrep;
-                $addressTo = $ciup->nombrep;
 
-                $formattedAddrFrom = str_replace(' ','+',$addressFrom);
-                $formattedAddrTo = str_replace(' ','+',$addressTo);
-                
-                //Send request and receive json data
-                $geocodeFrom = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false');
-                $outputFrom = json_decode($geocodeFrom);
-                $geocodeTo = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrTo.'&sensor=false');
-                $outputTo = json_decode($geocodeTo);
-                
-                //Get latitude and longitude from geo data
-                $latitudeFrom = $outputFrom->results[0]->geometry->location->lat;
-                $longitudeFrom = $outputFrom->results[0]->geometry->location->lng;
-                $latitudeTo = $outputTo->results[0]->geometry->location->lat;
-                $longitudeTo = $outputTo->results[0]->geometry->location->lng;
-                
-                //Calculate distance from latitude and longitude
-                $theta = $longitudeFrom - $longitudeTo;
-                $dist = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) +  cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
+    /*Calcular los kilometros en los paises
+                    $unit = "K";
+                    $addressFrom = $ciud->nombrep;
+                    $addressTo = $ciup->nombrep;
 
-                $dist = acos($dist);
-                $dist = rad2deg($dist);
-                $miles = $dist * 60 * 1.1515;
-                $unit = strtoupper($unit);
+                    $formattedAddrFrom = str_replace(' ','+',$addressFrom);
+                    $formattedAddrTo = str_replace(' ','+',$addressTo);
+                    
+                    //Send request and receive json data
+                    $geocodeFrom = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false');
+                    $outputFrom = json_decode($geocodeFrom);
+                    $geocodeTo = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrTo.'&sensor=false');
+                    $outputTo = json_decode($geocodeTo);
+                    
+                    //Get latitude and longitude from geo data
+                    $latitudeFrom = $outputFrom->results[0]->geometry->location->lat;
+                    $longitudeFrom = $outputFrom->results[0]->geometry->location->lng;
+                    $latitudeTo = $outputTo->results[0]->geometry->location->lat;
+                    $longitudeTo = $outputTo->results[0]->geometry->location->lng;
+                    
+                    //Calculate distance from latitude and longitude
+                    $theta = $longitudeFrom - $longitudeTo;
+                    $dist = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) +  cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
 
-                $miles * 1.609344;
+                    $dist = acos($dist);
+                    $dist = rad2deg($dist);
+                    $miles = $dist * 60 * 1.1515;
+                    $unit = strtoupper($unit);
+
+                    $miles * 1.609344;*/
+
+                    $miles = 123;
       
 
     /*CALCULOS DE SERVICIOS*/
@@ -137,6 +140,7 @@ class nuevoController extends Controller
        /* CLASS */
        
           if ($clase == "Economico"){
+            $class = "Economic Clas";
 
               $personas= $adultos+ $ninos; 
 
@@ -144,13 +148,12 @@ class nuevoController extends Controller
 
              $total = round($servicios);      
           }elseif ($clase == "Ejecutiva") {
-                 
+            $class = "Executive Class";     
 
             dd('clase ejecutiva');
-          } else {
-                  
-
+          } else {  
             dd('clase primera');
+            $class = "First Class";
           }
             
         /*$dvuelos=[
@@ -167,7 +170,8 @@ class nuevoController extends Controller
                                       'fecha'=>$fecha, 
                                       'total'=>$total,
                                       'tiempo'=>$tiempo,
-                                      'destinos'=>$destinos]);
+                                      'destinos'=>$destinos,
+                                      'class'=>$class]);
 
         /*INVESTIGACION
             $1.40 por galon de avion 
@@ -204,10 +208,28 @@ class nuevoController extends Controller
             */
 
     }
+    public function edit(Request $request,$destino){
 
-  public function detalle(Request $request){
-    $ciudadD=$request->input('info');
-    dd($ciudadD);
-    return view('pg.detalles');
-  }
+
+      $depais=$request->get('depais');
+      $apais=$request->get('apais');
+      $hora=$request->get('hora');
+      $fecha=$request->get('fecha');
+      $clase=$request->get('clase');
+      $total=$request->get('total');
+      $duracion=$request->get('duracion');
+
+      return view('pg.detalles',['depais'=>$depais,
+                                 'apais'=>$apais,
+                                 'hora'=>$hora,
+                                 'fecha'=>$fecha,
+                                'clase'=>$clase,
+                                 'total'=>$total]);
+    }
+    public function store(Request $request){
+
+      dd($request->all());
+      
+    }
+
 }

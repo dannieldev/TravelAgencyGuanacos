@@ -65,6 +65,9 @@
 
 	{!! Html::script('assets/js/modernizr-2.6.2.min.js') !!}
 
+   <!-- Modernizr JS -->
+   {!! Html::style('assets/css/cuadro.css') !!}	
+
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>

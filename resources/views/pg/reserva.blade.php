@@ -13,22 +13,22 @@
 						<h2 class="heading-title">Vuelos Disponibles</h2>
 					</div>
 					<!-- dispo -->
-                  {!!Form::open(array('url'=>'/detalle','method'=>'GET','autocomplete'=>'off'))!!}
+
 					   <div class="col-md-12 animate-box">
 					     <a href="#" class="flight-book "><!-- Informacion de vuelos -->
 						     <div class="plane-name">
 						     	<br>
-								<p class="p-flight">Aerolinia disponibles Economic Class</p>
+								<p class="p-flight" name="clase" >Aerolinia disponibles {{ $class }}</p>
 							 </div>
 							<div class="desc">
 								<div class="left">
 									    <br>
-										<h4 name="info">{{ $cfrom->cpais }} -> {{ $cto->cpais }}</h4>
+										<h4 type="input" name="info">{{ $cfrom->cpais }} -> {{ $cto->cpais }}</h4>
 										<span>Fecha :</span>
-										<span>{{ $fecha }}</span>
+										<span name="fecha">{{ $fecha }}</span>
 										<span>----</span>
 										<span>Hora :</span>
-										<span>{{ $hora }}</span>
+										<span name="hora">{{ $hora }}</span>
 								</div>
 								<div class="right">
 									<br>
@@ -45,6 +45,7 @@
 							<div class="desc">
 							</div>
 						</a>
+						</div>
 
 
 						<a href="#" class="flight-book">
@@ -65,30 +66,38 @@
 								</div>
 							</div>
 						</a>
-						  @foreach ($destinos as $destino)
-						<a href="#" class="flight-book">
-
-							<div class="plane-name">
+						@foreach ($destinos as $destino)
+						<div class="col-md-12 container ">
+							<div class="col-md-5" id="cuadro2">
 								<span class="p-flight">{{ $destino->aerolinia }}</span>
 							</div>
-							<div class="desc">
-								<div class="left">
+							<div class="col-md-7" id="cuadro1">
+								<div class="col-md-8">
 									<h4>HK-MNL</h4>
 									<span>Dec 20 - Dec29</span>
 								</div>
-								<div class="right">
+								<div class="col-md-1">
 									<span class="price">
 										$790
 									</span>
-                                    <button type="submit" class="btn btn-primary btn-sm">Continuar</button>
-
+								</div>
+								<div class="col-md-3 pull-right">
+									<a href="{{URL::action('nuevoController@edit',['id'=>$destino->id_aerolipu,
+								                                               'depais'=>$cfrom->cpais,
+								                                                'apais'=>$cto->cpais,
+								                                                'hora'=>$hora,
+								                                                'fecha'=>$fecha,
+								                                                'clase'=>$class,
+								                                                'total'=>$total,
+								                                                'duracion'=>$tiempo])}}" class="btn btn-primary btn-sm" type="submit">Continuar</a>
 								</div>
 							</div>
-						</a>
+							
+						</div>
 						@endforeach
 
-					</div>
-					{!!Form::close()!!}
+					
+		
 					<!-- text -->
 						<!-- <div class="col-md-6 animate-box">
 						<div class="row">
