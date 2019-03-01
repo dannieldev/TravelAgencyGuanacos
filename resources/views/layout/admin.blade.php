@@ -28,7 +28,6 @@
 <body>
 		<div id="fh5co-wrapper">
 		<div id="fh5co-page">
-
 		<header id="fh5co-header-section" class="sticky-banner">
 			<div class="container">
 				<div class="nav-header">
@@ -39,7 +38,6 @@
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li><a  href="/">Login</a></li>
 							<li><a href="/register">Register</a></li>
-							<li><a href="/admins/register">Administrador</a></li>
 						</ul>
 					</nav>
 				</div>

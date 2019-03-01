@@ -13,7 +13,7 @@
 				</ul>
 			</div>
 			@endif		
-            {!!Form::model($contrys,['method'=>'PATCH','route'=>['paises.update',$contrys->idpais]])!!}
+            {!!Form::model($contrys,['method'=>'PATCH','route'=>['paises.update',$contrys->id]])!!}
             {{Form::token()}}
             <div class="form-group">
             	<label for="articulo">Nombre</label>

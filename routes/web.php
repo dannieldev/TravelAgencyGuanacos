@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /*
 |--------------------------------------------------------------------------
@@ -19,22 +19,9 @@ Route::post('/logout','Auth\LoginController@logout')->name('logout');
 Route::get('/register','Auth\RegisterController@showRegistrationForm');
 Route::post('/register','Auth\RegisterController@register')->name('register');
 
-
-Route::get('/admins','LoginadminController@showLoginFrom');
-Route::get('/admins/home','LoginadminController@index')->name('homeandmin');
-Route::post('/admins/login','LoginadminController@login')->name('loginandmin');
-Route::post('/admins/logout','LoginadminController@logout')->name('logoutandmin');
-
-Route::get('/admins/register','RegisteradminController@showRegistrationForm');
-Route::post('/admins/register','RegisteradminController@register')->name('registeradmin');
-
-
-
-
 Route::resource('/nueva',  'nuevoController');
 Route::get('/reserva',  'nuevoController@reserva');
 Route::resource('/detalle',  'detallesController');
-
 
 /*aerlineas*/
 Route::resource('/aerlineas','aerolineasController');

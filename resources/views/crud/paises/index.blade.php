@@ -18,7 +18,7 @@
                           <td>{{ $contry ->idpais }}</td> 
                           <td>{{ $contry ->nombrep }}</td>
                           <td>
-                            <a href="{{URL::action('paisesController@edit',$contry->idpais)}}"><button class="btn btn-outline-primary">Editar</button></a>
+                            <a href="{{URL::action('paisesController@edit',$contry->id)}}"><button class="btn btn-outline-primary">Editar</button></a>
                           </td>
                           <td>
                             {{Form::Open(array('action'=>array('paisesController@destroy',$contry->idpais),'method'=>'delete'))}}

@@ -50,7 +50,8 @@ class destinosController extends Controller
         $destino->aerpuertos_idaerpuerto=$adestino;
         $destino->aerolinea_id=$aerolinea;
         $destino->save();
-        return Redirect::to('/destinos');
+       /* return Redirect::to('/destinos');*/
+       return Redirect::to('nueva');
     }
     public function edit($id_aerolipu){
          $aeropuerto = Aeropuerto::orderBy('idaerpuerto', 'ASC')->pluck('nombrepu', 'idaerpuerto');

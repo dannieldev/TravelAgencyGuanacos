@@ -38,8 +38,8 @@ class ciudadesController extends Controller
      public function edit($idciudad){
      	return view('crud.ciudades.edit',['citys'=>Ciudad::where('idciudad',$idciudad)->firstOrFail()]);
     }
-     public function update(Request $request, $idciudad){
-    	$citys =Ciudad::where('idciudad','=',$idciudad);
+     public function update(Request $request, $id){
+    	$citys =Ciudad::where('id','=',$id)->first();
         $citys->nombrec=$request->get('nombre');
     	$citys->idciudad=$request->get('codigo');
     	$citys->pais_idpais=$request->get('codigop');

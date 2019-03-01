@@ -17,15 +17,15 @@
             {{Form::token()}}
             <div class="form-group">
             	<label  style="font-size:13pt" for="articulo">Aeropuerto de Partida</label>
-            	{!! Form::select('ainicio', $aeropuerto, null,['class' => 'form-', 'placeholder' => 'Aeropuerto inicio...','style'=>'font-size:15pt']) !!}
+            	{!! Form::select('ainicio', $aeropuerto, null,['class' => 'form-','id'=> 'puerto', 'placeholder' => 'Aeropuerto inicio...','style'=>'font-size:15pt']) !!}
             </div>
              <div class="form-group">
             	<label style="font-size:13pt" for="articulo">Aeropuerto de Destino</label>
-            	{!! Form::select('adestino', $aeropuerto, null,['class' => 'form-', 'placeholder' => 'Aeropuerto destino...','style'=>'font-size:15pt']) !!}
+            	{!! Form::select('adestino', $aeropuerto, null,['class' => 'form-','id'=> 'puerto', 'placeholder' => 'Aeropuerto destino...','style'=>'font-size:15pt']) !!}
             </div>
              <div class="form-group">
             	<label style="font-size:13pt" for="articulo">Nombre de Aerolinia</label>
-            	{!! Form::select('aeroline', $aerolinea, null,['class' => 'form-', 'placeholder' => 'Aerolinea...','style'=>'font-size:15pt']) !!}
+            	{!! Form::select('aeroline', $aerolinea, null,['class' => 'form-','id'=>'linea','placeholder' => 'Aerolinea...','style'=>'font-size:15pt']) !!}
             </div>
             <div class="form-group">
             	<button class="btn btn-outline-dark" type="submit">Guardar</button>

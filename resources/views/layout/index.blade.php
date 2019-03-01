@@ -103,7 +103,7 @@
 					<div class="row row-bottom-padded-md">
 						<div class="col-md-6 col-sm-6 col-xs-12 fh5co-footer-link">
 							<h3>About Travel</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							<p>Viaja en tus sueños</p>
 						</div>
 						<div class="col-md-6 col-sm-6 col-xs-12 fh5co-footer-link">
 							<h3>Top Flights Routes</h3>
@@ -116,7 +116,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-md-6 col-md-offset-3 text-center">
 							<p class="fh5co-social-icons">
 								<a href="#"><i class="icon-twitter2"></i></a>
@@ -127,7 +127,7 @@
 							</p>
 							<p>Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></p>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</footer>
@@ -221,7 +221,21 @@
 
      	});
      </script>
+        <script type="text/javascript">
+     	$("#puerto1").select2({
 
+     	});
+     </script>
+     <script type="text/javascript">
+     	$("#puerto2").select2({
+
+     	});
+     </script>
+     <script type="text/javascript">
+     	$("#linea").select2({
+
+     	});
+     </script>
 	</body>
 </html>
 

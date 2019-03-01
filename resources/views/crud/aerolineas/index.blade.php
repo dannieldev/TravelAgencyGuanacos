@@ -5,7 +5,9 @@
         @include('crud.aerolineas.search')
       </div>
       <div class="col-log-3">
-    </div> 
+    </div>
+
+    
 <div class="row">
             <table class="table table-striped table-bordered table-condensed table-hover">
           <thead>

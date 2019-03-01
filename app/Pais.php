@@ -11,7 +11,8 @@ class Pais extends Model
         protected $primaryKey = 'idpais';
 
         protected $fillable = ['idpais', 
-    				     	   'nombrep'];
+    				     	   'nombrep',
+    				     	   'id'];
     				     	   
     protected $dateFormat = 'Ymd H:i:s';
 

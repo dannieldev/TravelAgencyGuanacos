@@ -28,7 +28,7 @@
 										    <div class="col-xxs-12 col-xs-6 mt">
 										    	<div class="input-field">
 										    		<label for="from">De :</label>
-											  {!! Form::select('cityd',$city, null,['id' => 'cyp', 'class' => 'form-control', 'placeholder' => 'Ciudad, Pais', 'id'=> 'paiscy','value'=>'Salvador,El Salvador']) !!}
+											   {!! Form::select('cityd',$city, null,['id' => 'cyp', 'class' => 'form-control', 'placeholder' => 'Ciudad, Pais', 'id'=> 'paiscy','value'=>'Salvador,El Salvador']) !!} 
 											    </div>
 										    </div>
 											<div class="col-xxs-12 col-xs-6 mt">
@@ -123,9 +123,10 @@
 				</div>
 			</div>
 		</div>
+
 	<div class="fh5co-hero">
 		
-			<div class="fh5co-cover" data-stellar-background-ratio="1" style="background-image: url(http://www.viajeslemans.com/web/wp-content/uploads/2017/06/foto.jpg);">
+		<div class="fh5co-cover" data-stellar-background-ratio="1" style="background-image: url(http://www.viajeslemans.com/web/wp-content/uploads/2017/06/foto.jpg);">
 				<div class="desc">
 					<div class="container">
 						<div class="row">

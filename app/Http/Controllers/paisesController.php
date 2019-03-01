@@ -31,12 +31,12 @@ class paisesController extends Controller
     	$contrys->save();
     	return Redirect::to('/paises');
     }
-    public function edit($idpais){
-    	return view('crud.paises.editar',['contrys'=>Pais::where('idpais',$idpais)->firstOrfail()]);
+    public function edit($id){
+    	return view('crud.paises.editar',['contrys'=>Pais::where('id',$id)->firstOrfail()]);
     }
-    public function update(Request $request, $idpais){
-    	$contrys =Pais::where('idpais','=',$idpais)->first();
-    	$contrys->idpais=$request->get('codido');
+    public function update(Request $request, $id){
+    	$contrys =Pais::where('id','=',$id)->first();
+    	$contrys->idpais=$request->get('codigo');
     	$contrys->nombrep=$request->get('nombre');
     	$contrys->update();
     	return Redirect::to('/paises');

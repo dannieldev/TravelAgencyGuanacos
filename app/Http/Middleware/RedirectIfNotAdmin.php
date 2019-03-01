@@ -17,12 +17,19 @@ class RedirectIfNotAdmin
      */
     public function handle($request, Closure $next)
     {
-         if (Auth::check() && Auth::user()->role=='admins') {
+
+         if (Auth::check() && Auth::user()->roll=='Adminstracion') {
+
+
             return $next($request);
          }
 
-         dd('no');
-        return redirect('/');
+         
+         return back()->withErrors([$this->username() =>'<center class="alert alert-danger">No eres administrador</center>']);
+    }
+
+    public function username(){
+        return 'name';
     }
 }
 /*class RedirectIfNotAdmin

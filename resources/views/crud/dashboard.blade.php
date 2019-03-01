@@ -8,7 +8,16 @@
 	{!! Html::style('assets/css/bootstrap.min.css') !!}	
   <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  	{!! Html::style('assets/css/now-ui-dashboard.css') !!}
+
+    <!-- Styles dashboar -->
+ {!! Html::style('assets/css/now-ui-dashboard.css') !!}
+  {!! Html::style('assets/js/select/dist/css/select2.css') !!}
+  {!! Html::script('assets/js/select/dist/js/select2.js') !!}
+     {!! Html::style('assets/css/cuadro.css') !!} 
+
+
+  
+
 </head>
 <body class="">
   <div class="wrapper ">
@@ -19,7 +28,7 @@
       <div class="logo">
         <a  class="simple-text logo-mini">
         </a>
-        <a href="" class="simple-text">
+        <a href="/home" class="simple-text">
          Agencia Guanacos
         </a>
       </div>
@@ -28,7 +37,7 @@
           <li class="active ">
             <a href="/aerlineas">
               <i class="design_app"></i>
-              <p>Aerolinias</p>
+              <p>Aerolineas</p>
             </a>
           </li>
           <li>
@@ -73,6 +82,12 @@
               <p>Pasajeros</p>
             </a>
           </li>
+          <li>
+            <a href="/user">
+              <i class="arrows-1_cloud-download-93 "></i>
+              <p>Usuarios</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -88,7 +103,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <h3 class="navbar-brand">Dashboard de Agencia Guanacos</h3>
+            <h3 class="navbar-brand">Area {{ auth()->user()->roll }}  de Agencia Guanacos</h3>
             <h3 class="navbar-brand">Bienvenido {{ auth()->user()->name }}</h3>
           </div>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
@@ -116,7 +131,10 @@
         	<div class="col-lg-12">
             <div class="card card-chart">
               <div class="card-header">
+  
               	@yield('content')
+
+          </div>
               </div>
              </div>
          </div>
@@ -133,5 +151,28 @@
       </footer>
     </div>
   </div>
+
+  
+  <!-- Main JS -->
+      {!! Html::script('assets/js/jquery.easy-autocomplete.js') !!}
+  
+  {!! Html::script('assets/js/jquery.min.js') !!}
+  <!-- jQuery Easing -->
+  {!! Html::script('assets/js/jquery.easing.1.3.js') !!}
+  
+  
+
+  <script type="text/javascript">
+      $("#puerto").select2({
+
+      });
+     </script>
+
+  <script type="text/javascript">
+      $("#linea").select2({
+
+      });
+  </script>
+
 </body>
 </html>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pais;
 use App\Ciudad;
+use App\Aeropuerto;
+use App\Aerolineas;
 use DB;
 
 class nuevoController extends Controller
@@ -33,8 +35,12 @@ class nuevoController extends Controller
     	$query=trim($request->get('paises'));
     
     	$reportes=Pais::where('nombrep','LIKE','%'.$query.'%')->get();
-    	
-    	return view ('pg.inicio',compact('city'));
+
+      $aeropuerto = Aeropuerto::orderBy('idaerpuerto', 'ASC')->pluck('nombrepu', 'idaerpuerto');
+      $aerolinea = Aerolineas::orderBy('idaerolinea','ASC')->pluck('nombreli','idaerolinea');
+    
+    	//return view ('pg.inicio',compact('aeropuerto'),compact('aerolinea'));
+      return view ('pg.inicio',compact('city'));
     }
     
  public function reserva(Request $request){
@@ -82,8 +88,8 @@ class nuevoController extends Controller
           ->join('aerolineas as a','aerolinea_id','=','idaerolinea')
           ->join('aerpuertos as aep','aerpuertos_idaerpuerto','=','aep.idaerpuerto')
           ->select('ae.nombrepu as aeropuerto','a.nombreli as aerolinia','aep.nombrepu as destino','ae.ciudad_idciudad as cinicio','aep.ciudad_idciudad as cdestino','id_aerolipu')
-          /*->where('ae.ciudad_idciudad','LIKE','%'.$ciudadD.'%')
-          ->where('aep.ciudad_idciudad','LIKE','%'.$ciudadP.'%')*/
+          ->where('ae.ciudad_idciudad','LIKE','%'.$ciudadD.'%')
+          ->where('aep.ciudad_idciudad','LIKE','%'.$ciudadP.'%')
           ->get()->toArray();
 
 
@@ -150,9 +156,13 @@ class nuevoController extends Controller
           }elseif ($clase == "Ejecutiva") {
             $class = "Executive Class";     
 
-            dd('clase ejecutiva');
+            $servicios = (255+$gaspcp)*$personas;
+
+            $total = round($servicios); 
           } else {  
-            dd('clase primera');
+            $servicios = (276+$gaspcp)*$personas;
+
+            $total = round($servicios); 
             $class = "First Class";
           }
             
