@@ -97,7 +97,6 @@
 		<!-- end:header-top -->
 		   @yield('content')
 	
-	
 		<footer>
 			<div id="footer">
 				<div class="container">

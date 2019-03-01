@@ -57,10 +57,7 @@ class detallesController extends Controller
         $seachpass = Pasajero::orderby('idpasajero','DESC')->first();
         $idpass=$seachpass->idpasajero;
 
-        $seachclass = Clase::select('id
-
-
-          clases')->where('tipclase','LIKE','%'.$clase.'%')->first();
+        $seachclass = Clase::select('idclases')->where('tipclase','LIKE','%'.$clase.'%')->first();
         $idclass=$seachclass->idclases;
 
 
