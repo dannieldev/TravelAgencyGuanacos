@@ -11,9 +11,11 @@
 			<div class="col-md-12 animate-box">
 				<h2 class="heading-title">Detalles del vuelo</h2>
 				<div style="visibility: hidden">{{ $destino }}</div>
+
 			</div>
 			<!-- Detalles de todo el vuelos -->
 		{!!Form::open(array('url'=>'/detalle','method'=>'GET','autocomplete'=>'off'))!!}
+
 	     	<div class="col-md-12">
 	     		<div class="col-md-7">
 		     		<article class="card">
@@ -32,64 +34,50 @@
 										Precio
 								<i class="icon-arrow-down22"></i>
 								${{ $total }}
+								&nbsp &nbsp &nbsp
+								Pasajeros+ {{ $personas }}
 					  </h1>	
 		     	   </div>
 		     	</article>
-	     	</div>
-	</div>
+	     	   </div>
+	        </div>
 			<div class="col-md-12">
 				  <div class="col-md-7">
 					<article class="card">
 						<div class="card-body p-5">
-						<ul class="nav bg-light nav-pills rounded nav-fill mb-0" role="tablist">
-							<h2>Pasajero</h2>
+						<ul class="nav bg-light nav-pills rounded nav-fill mb-4" role="tablist">
+							
 						</ul>
+						<p class="alert alert-success">Ingresa tus datos personales</p>
 						<div class="tab-content">
 						<div class="tab-pane fade show active" id="nav-tab-card">
 							<form role="form">
-								<div class="form-group">
-									<h5 for="username">Nombre</h5>
-									<input type="text" class="form-control" name="username" placeholder="Igual que en el documento de identidad" required="">
-								</div> <!-- form-group.// -->
-
-								<div class="form-group">
-									<h5 for="cardNumber">Apellido</h5>
-									<div class="input-group">
-										<input type="text" class="form-control" name="cardNumber" placeholder="Igual que en el documento de identidad">
-										
-									</div>
-								</div> <!-- form-group.// -->
+							        <div class="form-group">
+							            <h5><span style="font-size:10pt" class="hidden-xs" required="">Nombre Completo</span> </h5>
+							        	<div class="input-group">
+							        		<input style="font-size:10pt" type="text" class="form-control" placeholder="Nombre" name="nombre" required="">
+								            <input style="font-size:10pt" type="text" class="form-control" placeholder="Apellido" name="apellido" required="">
+							        	</div>
+							        </div>
 								<div class="form-group">
 									<h5 for="username">Fecha de Nacimiento</h5>
-									 {!! Form::date('fechasolicita', \Carbon\Carbon::now()->format('Y-m-d'), ['class'=>'form-control'])  !!}  
+									 {!! Form::date('fecha', \Carbon\Carbon::now()->format('Y-m-d'), ['class'=>'form-control','style'=>'font-size:10pt','required'=>''])  !!}  
 								</div> <!-- form-group.// -->
 								<div class="form-group">
 									<h5 for="username">Numero de documento de ID</h5>
-									 {!! Form::number('fechasolicita','value', ['class'=>'form-control'])  !!}  
+									 {!! Form::number('dui','value', ['class'=>'form-control','placeholder'=>'12345439-2','style'=>'font-size:10pt','required'=>''])  !!}  
 								</div> <!-- form-group.// -->
-
-
 								<div class="form-group">
-									<h5 for="cardNumber">Sexo</h5>
-									
-		                            <select class="form-control" id="status" name="status">
-		                                <option>Masculino</option>
-		                                <option>Femenino</option>
+									<h5 for="cardNumber">Sexo</h5>									
+		                            <select class="form-control" style="font-size:10pt"  name="sexo" placeholder="Sexo" required="">
+		                                <option  style="font-size:12pt">Masculino</option>
+		                                <option  style="font-size:12pt">Femenino</option>
 		                            </select>
 		                        </div>
 							    <div class="radio">
-								  <h4><input type="checkbox" name="cb1" class="chb" /> Acepta los terminos y codiciones</h4>
+								  <h4><input type="checkbox" class="chb" required=""/> Acepta los terminos y codiciones</h4>
 								</div>
-								<a href="{{URL::action('detallesController@edit',['depais'=>$depais,
-								                               'apais'=>$apais,
-								                               'hora'=>$hora,
-						                                       'fecha'=>$fecha,
-		    	                                               'clase'=>$clase,
-								                               'total'=>$total,
-								                               'destino'=>$destino])}}" 
-								    class="subscribe btn btn-primary btn-block" type="button">Compra</a>
-
-								<button class="subscribe btn btn-primary btn-block" type="submit">Comprar</button>
+								<button class="subscribe btn btn-primary btn-block" type="submit">Registar</button>
 							</form>
 						</div> <!-- tab-pane.// -->
 						</div> <!-- tab-pane.// -->
@@ -117,14 +105,9 @@
 							<p class="alert alert-success">Ingresa los datos de tu tarjeta</p>
 							<form role="form">
 							<div class="form-group">
-								<h5 for="username">Titular de la tarjeta</h5>
-								<input type="text" class="form-control" name="username" placeholder="Nombre y apellido" required="">
-							</div> <!-- form-group.// -->
-
-							<div class="form-group">
 								<h5 for="cardNumber">Número de la tarjeta</h5>
 								<div class="input-group">
-									<input type="text" class="form-control" name="cardNumber" placeholder="Ingrese los 16 digitos de la tarjeta">
+									<input style="font-size:10pt" type="text" class="form-control" name="cardNumber" placeholder="1111 2222 3333 4444" required="">
 									<div class="input-group-append">
 										<span class="input-group-text text-muted">
 											<i class="fab fa-cc-visa"></i>   <i class="fab fa-cc-amex"></i>   
@@ -137,26 +120,34 @@
 							<div class="row">
 							    <div class="col-sm-8">
 							        <div class="form-group">
-							            <h5><span class="hidden-xs">Vencimiento</span> </h5>
+							            <h5><span style="font-size:10pt" class="hidden-xs" required="">Vencimiento</span> </h5>
 							        	<div class="input-group">
-							        		<input type="number" class="form-control" placeholder="MM" name="">
-								            <input type="number" class="form-control" placeholder="YY" name="">
+							        		<input style="font-size:10pt" type="number" class="form-control" placeholder="MM" name="mes">
+								            <input style="font-size:10pt" type="number" class="form-control" placeholder="YY" name="año">
 							        	</div>
 							        </div>
 							    </div>
 							    <div class="col-sm-4">
 							        <div class="form-group">
-							            <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
-							            <input type="number" class="form-control" required="">
+							            <label data-toggle="tooltip">CVV <i class="fa fa-question-circle"></i></label>
+							            <input  style="font-size:10pt" type="number" class="form-control" required="">
 							        </div> <!-- form-group.// -->
 							    </div>
 							</div> <!-- row.// -->
 							 <div class="form-group">
 									<h5 for="username">E-mail</h5>
-									<input type="text" class="form-control" name="username" placeholder="" required="">
+									<input style="font-size:10pt" type="text" class="form-control" name="email" placeholder="email" required="">
 							</div> <!-- form-group.// --> 
 
-							<button class="subscribe btn btn-primary btn-block" type="submit"> Comprar  </button>
+							<a href="{{URL::action('detallesController@edit',['depais'=>$depais,
+								                               'apais'=>$apais,
+								                               'hora'=>$hora,
+						                                       'fecha'=>$fecha,
+		    	                                               'clase'=>$clase,
+								                               'total'=>$total,
+								                               'destino'=>$destino,
+								                               'personas'=>$personas])}}" 
+								    class="subscribe btn btn-primary btn-block" type="button">Reservar</a>
 							</form>
 						</div> <!-- tab-pane.// -->
 						</div> <!-- tab-pane.// -->

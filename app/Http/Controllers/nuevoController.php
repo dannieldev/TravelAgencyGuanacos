@@ -84,8 +84,7 @@ class nuevoController extends Controller
           ->select('ae.nombrepu as aeropuerto','a.nombreli as aerolinia','aep.nombrepu as destino','ae.ciudad_idciudad as cinicio','aep.ciudad_idciudad as cdestino','id_aerolipu')
           /*->where('ae.ciudad_idciudad','LIKE','%'.$ciudadD.'%')
           ->where('aep.ciudad_idciudad','LIKE','%'.$ciudadP.'%')*/
-          ->get();
-
+          ->get()->toArray();
 
 
     /*Calcular los kilometros en los paises
@@ -138,11 +137,12 @@ class nuevoController extends Controller
         }
        */
        /* CLASS */
+          $personas= $adultos+ $ninos; 
        
           if ($clase == "Economico"){
-            $class = "Economic Clas";
+            $class = "Economic Class";
 
-              $personas= $adultos+ $ninos; 
+           
 
              $servicios = (236+$gaspcp)*$personas;
 
@@ -171,7 +171,8 @@ class nuevoController extends Controller
                                       'total'=>$total,
                                       'tiempo'=>$tiempo,
                                       'destinos'=>$destinos,
-                                      'class'=>$class]);
+                                      'class'=>$class,
+                                      'personas'=>$personas]);
 
         /*INVESTIGACION
             $1.40 por galon de avion 
@@ -218,6 +219,7 @@ class nuevoController extends Controller
       $clase=$request->get('clase');
       $total=$request->get('total');
       $duracion=$request->get('duracion');
+      $personas=$request->get('personas');
 
       return view('pg.detalles',['depais'=>$depais,
                                  'apais'=>$apais,
@@ -225,7 +227,8 @@ class nuevoController extends Controller
                                  'fecha'=>$fecha,
                                  'clase'=>$clase,
                                  'total'=>$total,
-                                 'destino'=>$destino]);
+                                 'destino'=>$destino,
+                                 'personas'=>$personas]);
     }
     public function store(Request $request){
 

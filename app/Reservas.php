@@ -14,10 +14,13 @@ class Reservas extends Model
         protected $fillable = ['idreserva', 
     				     	   'hora',
     				     	   'fecha',
-    				     	   'tiempo',
-    				     	   'precio',
+    				     	   'pago',
+    				     	   'pasajeros',
     				     	   'clase_idclases',
-    				     	   'aerolipu_id_aerolipu'];
-  protected $dateFormat = 'Ymd H:i:s';
+    				     	   'aerolipu_id_aerolipu',
+                               'pasajero_idpasajero',
+                               'updated_at',
+                               'created_at'];
+        protected $dateFormat = 'Ymd H:i:s';
 
 }

@@ -7,3 +7,79 @@
 	background-color: #F78536;
 	color: #FFFFFF;
 }
+#info{
+	border-style: solid;
+    border-width: 1px;
+	width: 475px;
+	height: 80px;
+	background-color: #F78536;
+	color: #FFFFFF;
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+}
+#info2{
+	border-style: solid;
+    border-width: 1px;
+	width: 521.25px;
+	height: 80px;
+	background-color: #00AD7C;
+	color: #FFFFFF;
+	padding-top: 10px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+
+}
+#info3{
+	border-style: solid;
+    border-width: 1px;
+	width: 173.75px;
+	height: 80px;
+	background-color: #F78536;
+	color: #FFFFFF;
+	padding-top: 20px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    font-size:25px;
+	font-color:#ffffff;
+    font-family:sans-serif;
+}
+#aerolinias{
+	border-style: solid;
+    border-width: 0.1px;
+	width: 475px;
+	height: 60px;
+	background-color: #F78536;
+	color: #FFFFFF;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+#detalles{
+	border-style: solid;
+    border-width: 0.1px;
+	width: 695px;
+	height: 60px;
+	background-color: #00AD7C;
+	color: #FFFFFF;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+#precio{
+    padding-right: 10px;
+    padding-left: 10px;
+    float: right;
+}
+
+#text{
+	font-size:20px;
+	font-color:#ffffff;
+    font-family:sans-serif;
+}
+
