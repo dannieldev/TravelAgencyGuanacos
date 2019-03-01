@@ -35,34 +35,86 @@ class nuevoController extends Controller
     	
     	return view ('pg.inicio',compact('city'));
     }
+    
     public function reserva(Request $request){
 
+      $ciudadD=$request->input('cityd');
+      $ciudadP=$request->input('cityp');
 
 
-      $ciudad=$request->input('cityp');
-
-      $buscar = DB::table('ciudad')
+      $cfrom = DB::table('ciudad')
                 ->join('pais','idpais','=','pais_idpais')
                 ->select(DB::raw('concat(ciudad.nombrec,", ",pais.nombrep) AS cpais'),'ciudad.idciudad')
-                ->where('idciudad','LIKE','%'.$ciudad.'%')
+                ->where('idciudad','LIKE','%'.$ciudadD.'%')
                 ->first();
 
+      $cto = DB::table('ciudad')
+                ->join('pais','idpais','=','pais_idpais')
+                ->select(DB::raw('concat(ciudad.nombrec,", ",pais.nombrep) AS cpais'),'ciudad.idciudad')
+                ->where('idciudad','LIKE','%'.$ciudadP.'%')
+                ->first();
+
+           $ciud = DB::table('ciudad')
+          ->join('pais','idpais','=','pais_idpais')
+          ->select('ciudad.nombrec','pais.nombrep','ciudad.idciudad')
+          ->where('idciudad','LIKE','%'.$ciudadD.'%')
+          ->first();
+
+           $ciup = DB::table('ciudad')
+          ->join('pais','idpais','=','pais_idpais')
+          ->select('ciudad.nombrec','pais.nombrep','ciudad.idciudad')
+          ->where('idciudad','LIKE','%'.$ciudadP.'%')
+          ->first();
 
 
-      
+      //dd($ciud->nombrep);
+
+      //dd($ciup->nombrep);
+
+
       $fecha=$request->input('fecha');
 
       $hora=$request->input('hora');
 
-      $dvuelos = array();
 
-      $dvuelos ['fecha']=$fecha;
-      $dvuelos ['hora']=$hora;
+  
+            $unit = "K";
+            $addressFrom = 'España';
+            $addressTo = 'Rusia';
 
-      $fecha = get($dvuelos);
-   
+            $formattedAddrFrom = str_replace(' ','+',$addressFrom);
+            $formattedAddrTo = str_replace(' ','+',$addressTo);
+            
+            //Send request and receive json data
+            $geocodeFrom = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false');
+            $outputFrom = json_decode($geocodeFrom);
+            $geocodeTo = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrTo.'&sensor=false');
+            $outputTo = json_decode($geocodeTo);
+            
+            //Get latitude and longitude from geo data
+            $latitudeFrom = $outputFrom->results[0]->geometry->location->lat;
+            $longitudeFrom = $outputFrom->results[0]->geometry->location->lng;
+            $latitudeTo = $outputTo->results[0]->geometry->location->lat;
+            $longitudeTo = $outputTo->results[0]->geometry->location->lng;
+            
+            //Calculate distance from latitude and longitude
+            $theta = $longitudeFrom - $longitudeTo;
+            $dist = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) +  cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
+
+            $dist = acos($dist);
+            $dist = rad2deg($dist);
+            $miles = $dist * 60 * 1.1515;
+            $unit = strtoupper($unit);
+
+            $miles * 1.609344;
+
+        $dvuelos=[
+        'fecha'=>$request->input('fecha'),
+        'hora'=>$request->input('hora'),
+        'km'=>$miles
+        ];
 
 
-      return view('pg.reserva',['buscar'=>$buscar,'dvuelos'=>$dvuelos]);
+            return view('pg.reserva',['cfrom'=>$cfrom,'cto'=>$cto]);
     }
 }

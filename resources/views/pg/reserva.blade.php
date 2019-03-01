@@ -10,24 +10,35 @@
 				</div>
 				<div class="row row-bottom-padded-md">
 					<div class="col-md-12 animate-box">
-						<h2 class="heading-title">Vuelos Disponibles Para {{ $buscar->cpais }}</h2>
+						<h2 class="heading-title">Vuelos Disponibles</h2>
 					</div>
 					<!-- dispo -->
 
-
-
-					<div class="col-md-12 animate-box">
-					     <a href="#" class="flight-book">
-							<div >
-								<h2 class="p-flight">{{ $buscar->cpais }}</h2>
-								<h2>{{ $dvuelos->fecha }}</h2>
-								<h2>{{ $dvuelos->hora }}</h2>
+					   <div class="col-md-12 animate-box">
+					     <a href="#" class="flight-book ">
+						     <div class="plane-name">
+								<p class="p-flight">Aerolinia</p>
+								<i class="icon-arrow-down22"></i>
+							 </div>
+							<div class="desc">
+								<div class="left">
+										<h4>{{ $cfrom->cpais }} <- {{ $cto->cpais }}</h4>
+										<span>Fecha</span>
+										<span>Hora</span>
+								</div>
+								<div class="right">
+								    <span class="price">
+										<i class="icon-arrow-down22"></i>
+										Precio
+									</span>
+								</div>
 							</div>
-						</a>
+					     </a>
 
 						<a href="#" class="flight-book">
 							<div class="plane-name">
-								<span class="p-flight">United States Airways</span>
+								<span class="p-flight">Aerolinia</span>
+
 							</div>
 							<div class="desc">
 								<div class="left">
