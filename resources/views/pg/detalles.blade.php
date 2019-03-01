@@ -2,10 +2,6 @@
 @section('content') 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
-  
-
-
 <div id="fh5co-tours" class="fh5co-section-gray">
 	<div class="container">
 			<div class="col-md-12 animate-box">

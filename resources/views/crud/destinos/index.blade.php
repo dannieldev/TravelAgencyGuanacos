@@ -1,27 +1,35 @@
 @extends('crud.dashboard')
 @section('content')
+        @include('crud.destinos.search')
 <div class="row">
             <table class="table table-striped table-bordered table-condensed table-hover">
           <thead>
             <tr>             
-               <th>ID</th>
-               <th>aeropuerto</th>
-               <th>Editar</th>                      
+               <th>Aeropuerto salida</th>
+               <th>Aeropuerto destino</th>
+               <th>Aerolinia</th>
+               <th>Editar</th>
+               <th>Eliminar</th>                      
             </tr>
           </thead>
             <tbody>
-              @foreach ($puertos as $puerto)
+              @foreach ($destinos as $destino)
                         <tr>
-                          <td>{{ $puerto ->id_aerolipu }}</td> 
-                          <td>{{ $puerto ->aerpuerto_id }}</td>
+                          <td>{{ $destino ->aeropuerto }}</td>
+                          <td>{{ $destino ->destino }}</td>
+                          <td>{{ $destino ->aerolinea }}</td>
                           <td>
-                            <a href="{{-- {{URL::action('registrosController@edit',$reporte->idarticulo)}} --}}"><button class="btn btn-outline-primary">Editar</button></a>
-                            <a href="" data-target="#modal-delete-{{--{{$reporte->idarticulo}} --}}" data-toggle="modal"><button class="btn btn-outline-danger">Eliminar</button></a>
+                            <a href="{{URL::action('destinosController@edit',$destino->id_aerolipu)}}"><button class="btn btn-outline-primary">Editar</button></a>
+                          </td> 
+                          <td>
+                            {{Form::Open(array('action'=>array('destinosController@destroy',$destino->id_aerolipu),'method'=>'delete'))}}
+                              <button class="btn btn-outline-primary">Eliminar</button>
+                              {{Form::Close()}}
                           </td>                  
                         </tr>
-                        
               @endforeach 
           </tbody>
       </table>
     </div>
+    {!! $destinos->appends(Request::only('destino')) -> render() !!}
 @endsection

@@ -1,5 +1,6 @@
 @extends('crud.dashboard')
 @section('content')
+        @include('crud.ciudades.search')
 <div class="row">
           <table class="table table-striped table-bordered table-condensed table-hover">
           <thead>
@@ -7,7 +8,9 @@
                <th>ID</th>
                <th>Nombre</th>
                <th>Pais</th>
-               <th>Editar</th>                      
+               <th>Editar</th> 
+               <th>Eliminar</th>   
+
             </tr>
           </thead>
             <tbody>
@@ -15,14 +18,20 @@
                         <tr>
                           <td>{{ $city ->idciudad }}</td> 
                           <td>{{ $city ->nombrec }}</td>
-                          <td>{{ $city ->pais_idpais }}</td>
+                          <td>{{ $city ->nombrep }}</td>
                           <td>
-                            <a href="{{-- {{URL::action('registrosController@edit',$reporte->idarticulo)}} --}}"><button class="btn btn-outline-primary">Editar</button></a>
-                            <a href="" data-target="#modal-delete-{{--{{$reporte->idarticulo}} --}}" data-toggle="modal"><button class="btn btn-outline-danger">Eliminar</button></a>
-                          </td>                  
+                            <a href="{{URL::action('ciudadesController@edit',$city->idciudad)}}"><button class="btn btn-outline-primary">Editar</button></a>
+                          </td> 
+                           <td>
+                            {{Form::Open(array('action'=>array('ciudadesController@destroy',$city->idciudad),'method'=>'delete'))}}
+                              <button class="btn btn-outline-primary">Eliminar</button>
+                              {{Form::Close()}}
+                          </td>                 
                         </tr>            
               @endforeach 
           </tbody>
       </table>
     </div>
+    {!! $citys->appends(Request::only('city')) -> render() !!}
+
 @endsection

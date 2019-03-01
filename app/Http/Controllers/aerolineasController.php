@@ -14,7 +14,7 @@ class aerolineasController extends Controller
         $query=trim($request->get('searchText'));
      	$lineas=Aerolineas::where('nombreli','LIKE','%'.$query.'%')
 					     	->orderBy('idaerolinea','desc')
-				            ->paginate(7);
+				            ->paginate(10);
     	}
 
     	return view('crud.aerolineas.index',['lineas'=>$lineas,'searchText'=>$query]);

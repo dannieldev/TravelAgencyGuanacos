@@ -16,11 +16,11 @@ class Reservas extends Model
     				     	   'fecha',
     				     	   'pago',
     				     	   'pasajeros',
-    				     	   'clase_idclases',
+    				     	   'clases_idclases',
     				     	   'aerolipu_id_aerolipu',
-                               'pasajero_idpasajero',
-                               'updated_at',
-                               'created_at'];
+                     'pasajero_idpasajero',
+                     'updated_at',
+                     'created_at'];
         protected $dateFormat = 'Ymd H:i:s';
 
 }

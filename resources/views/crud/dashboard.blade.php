@@ -92,15 +92,6 @@
             <h3 class="navbar-brand">Bienvenido {{ auth()->user()->name }}</h3>
           </div>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                  </div>
-                </div>
-              </div>
-            </form>
               <div class="nav-item">
               	<form action="{{ route('logout') }}" method="post">
 							 {{ csrf_field() }}

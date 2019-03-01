@@ -11,8 +11,8 @@ class Destino extends Model
     protected $primaryKey ='id_aerolipu';
     protected $fillable = ['id_aerolipu',
                             'aerpuerto_id',
-                            'aerlinea_id',
-                            'aerpuertos_idaeropuerto'];
+                            'aerolinea_id',
+                            'aerpuertos_idaerpuerto'];
 
 
 }

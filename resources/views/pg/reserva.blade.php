@@ -21,7 +21,7 @@
 				</div>
 			</div>
 			<div class="col-md-12" id="info2">
-				<span id="text">{{ $cfrom->cpais }} -> {{ $cto->cpais }} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </span>
+				<span id="text">{{ $cfrom->cpais }} -> {{ $cto->cpais }} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  </span>
 				<span id="text">Fecha : {{ $fecha }} ---- Hora : {{ $hora }}</span>
 			</div>
 			<div class="col-md-12" id="info3">

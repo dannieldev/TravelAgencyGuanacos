@@ -14,4 +14,20 @@ class clasesController extends Controller
 
     	return view('crud.clases.index',['clases'=>$clases]);
     }
+    public function create(){
+
+    }
+    public function store(){
+
+    }
+    public function edit(){
+
+    }
+    public function update(){
+
+    }
+    public function destroy(){
+        
+    }
+
 }

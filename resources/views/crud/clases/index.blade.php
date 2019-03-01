@@ -6,7 +6,6 @@
             <tr>             
                <th>ID</th>
                <th>Nombre</th>
-               <th>Editar</th>                      
             </tr>
           </thead>
             <tbody>
@@ -14,10 +13,10 @@
                         <tr>
                           <td>{{ $clase ->idclases }}</td> 
                           <td>{{ $clase ->tipclase }}</td>
-                          <td>
-                            <a href="{{-- {{URL::action('registrosController@edit',$reporte->idarticulo)}} --}}"><button class="btn btn-outline-primary">Editar</button></a>
-                            <a href="" data-target="#modal-delete-{{--{{$reporte->idarticulo}} --}}" data-toggle="modal"><button class="btn btn-outline-danger">Eliminar</button></a>
-                          </td>                  
+                          <!-- <td>
+                                             <a href="{{-- {{URL::action('registrosController@edit',$reporte->idarticulo)}} --}}"><button class="btn btn-outline-primary">Editar</button></a>
+                                             <a href="" data-target="#modal-delete-{{--{{$reporte->idarticulo}} --}}" data-toggle="modal"><button class="btn btn-outline-danger">Eliminar</button></a>
+                                           </td>  -->                 
                         </tr>            
               @endforeach 
           </tbody>

@@ -30,7 +30,6 @@
                               {{Form::Close()}}
                           </td>                  
                         </tr>    
-                        @include('crud.aerolineas.modal')      
               @endforeach 
           </tbody>
       </table>

@@ -8,10 +8,28 @@ use App\Pasajero;
 class pasajerosController extends Controller
 {
     //
-    public function index(){
+    public function index(Request $request){
 
-    	$pasajeros = Pasajero::get();
+        if ($request){
+        $query=trim($request->get('searchText'));
+        $pasajeros=Pasajero::where('nombre','LIKE','%'.$query.'%')
+                            ->orderBy('idpasajero','desc')
+                            ->paginate(10);
+        }
+    	return view('crud.pasajeros.index',['pasajeros'=>$pasajeros,'searchText'=>$query]);
+    }
+        public function create(){
 
-    	return view('crud.pasajeros.index',['pasajeros'=>$pasajeros]);
+    }
+    public function store(){
+
+    }
+    public function edit(){
+
+    }
+    public function update(){
+
+    }
+    public function destroy(){
     }
 }
