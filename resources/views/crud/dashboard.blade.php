@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Agencia de Viajes Guanaco</title>
-	<link rel="shortcut icon" href="favicon.ico">
+  <title>Agencia de Viajes Guanaco</title>
+  <link rel="shortcut icon" href="{{ asset('assets/images/icono.ico') }}">
 	<!-- Bootstrap  -->
 	{!! Html::style('assets/css/bootstrap.css') !!}
 	{!! Html::style('assets/css/bootstrap.min.css') !!}	
