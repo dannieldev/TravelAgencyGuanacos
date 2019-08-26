@@ -7,7 +7,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Agencia de Viajes Guanaco</title>
+	<title>Agencia de Viajes Guanacos</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -29,7 +29,7 @@
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	
 
-	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="shortcut icon" href="{{ asset('assets/images/icono.ico') }}">
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 
@@ -77,7 +77,6 @@
 	<body>
 		<div id="fh5co-wrapper">
 		<div id="fh5co-page">
-
 		<header id="fh5co-header-section" class="sticky-banner">
 			<div class="container">
 				<div class="nav-header">
@@ -93,10 +92,8 @@
 				</div>
 			</div>
 		</header>
-
 		<!-- end:header-top -->
 		   @yield('content')
-	
 		<footer>
 			<div id="footer">
 				<div class="container">
@@ -116,18 +113,6 @@
 							</ul>
 						</div>
 					</div>
-					<!-- <div class="row">
-						<div class="col-md-6 col-md-offset-3 text-center">
-							<p class="fh5co-social-icons">
-								<a href="#"><i class="icon-twitter2"></i></a>
-								<a href="#"><i class="icon-facebook2"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-								<a href="#"><i class="icon-dribbble2"></i></a>
-								<a href="#"><i class="icon-youtube"></i></a>
-							</p>
-							<p>Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></p>
-						</div>
-					</div> -->
 				</div>
 			</div>
 		</footer>
@@ -186,31 +171,6 @@
 	{!! Html::style('assets/select2-4.0.6-rc.1/dist/css/select2.css') !!}
 	{!! Html::script('assets/select2-4.0.6-rc.1/dist/js/select2.js') !!}
 
-    <!-- <script type="text/javascript">
-    	$(function()
-    	{
-    		$("#q").autocomplete({
-    			source:"search/autocomplete",
-    			minLength:3,
-    			select: function(event, ui) {
-    			     $('#q').val(ui.item.value);
-    
-    			}
-    		});
-    
-    		$('#q').data( "ui-autocomplete" )._renderItem = function(ul, item)
-    		{
-    			var $li = $("<li style='width:800px'>"),
-    
-    		};
-    		$li.after('data-value',item.value);
-    		$li.append(item.value);
-    		return $li.appendTo(ul);
-    	
-    	});
-    </script>
-    
-     -->
      <script type="text/javascript">
      	$("#paiscy").select2({
 

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/','Auth\LoginController@showLoginFrom');
+Route::get('/admin','Auth\LoginController@showLoginFrom');
 Route::get('/home','homeController@index')->name('home');
 Route::post('/login','Auth\LoginController@login')->name('login');
 Route::post('/logout','Auth\LoginController@logout')->name('logout');
@@ -19,6 +19,7 @@ Route::post('/logout','Auth\LoginController@logout')->name('logout');
 Route::get('/register','Auth\RegisterController@showRegistrationForm');
 Route::post('/register','Auth\RegisterController@register')->name('register');
 
+Route::resource('/',  'nuevoController');
 Route::resource('/nueva',  'nuevoController');
 Route::get('/reserva',  'nuevoController@reserva');
 Route::resource('/detalle',  'detallesController');

@@ -40,7 +40,7 @@
 											<div class="col-xxs-12 col-xs-6 mt alternate">
 												<div class="input-field">
 													<label for="date-start">Fecha salida :</label>
-													<input type="text" name='fecha' class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
+													<input type="text" name='fecha' class="form-control" id="date-start" placeholder="mm/dd/yyyy" required/>
 												</div>
 											</div>
 											<div class="col-xxs-12 col-xs-6 mt ">
@@ -62,7 +62,7 @@
 											<div class="col-xxs-12 col-xs-6 mt">
 												<section>
 													<label for="class">Adultos:</label>
-													<select class="cs-select cs-skin-border" name='adulto'>
+													<select class="cs-select cs-skin-border" name='adulto' required>
 														<option value="" disabled selected>1</option>
 														<option value="1">1</option>
 														<option value="2">2</option>

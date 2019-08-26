@@ -43,183 +43,192 @@ class nuevoController extends Controller
       return view ('pg.inicio',compact('city'));
     }
     
- public function reserva(Request $request){
+  public function reserva(Request $request){
+      if ( !empty( $request->input('fecha')) 
+      and !empty( $request->input('hora')) 
+      and !empty( $request->input('adulto'))
+      and !empty( $request->input('clase'))
+      and !empty( $request->input('cityd'))
+      and !empty( $request->input('cityp'))
+      )
+      {
+        /*GET REQUEST*/
+        $ciudadD=$request->input('cityd');
+        $ciudadP=$request->input('cityp');
 
-    /*GET REQUEST*/
-      $ciudadD=$request->input('cityd');
-      $ciudadP=$request->input('cityp');
+        $fecha=$request->input('fecha');
+        $hora=$request->input('hora');
+        $horain=(int)$hora;
+        $clase=$request->input('clase');
+        $adultos=$request->input('adulto');
+        $adultos= (int) $adultos;
+        $ninos=$request->input('nino');
+        $ninos= (int) $ninos;
 
-      $fecha=$request->input('fecha');
-      $hora=$request->input('hora');
-      $horain=(int)$hora;
-      $clase=$request->input('clase');
-      $adultos=$request->input('adulto');
-      $adultos= (int) $adultos;
-      $ninos=$request->input('nino');
-      $ninos= (int) $ninos;
+        /*CONSULTAS SQL*/ 
+            $cfrom = DB::table('ciudad')
+                      ->join('pais','idpais','=','pais_idpais')
+                      ->select(DB::raw('concat(ciudad.nombrec,", ",pais.nombrep) AS cpais'),'ciudad.idciudad')
+                      ->where('idciudad','LIKE','%'.$ciudadD.'%')
+                      ->first();
 
-    /*CONSULTAS SQL*/ 
-          $cfrom = DB::table('ciudad')
-                    ->join('pais','idpais','=','pais_idpais')
-                    ->select(DB::raw('concat(ciudad.nombrec,", ",pais.nombrep) AS cpais'),'ciudad.idciudad')
-                    ->where('idciudad','LIKE','%'.$ciudadD.'%')
-                    ->first();
+            $cto = DB::table('ciudad')
+                      ->join('pais','idpais','=','pais_idpais')
+                      ->select(DB::raw('concat(ciudad.nombrec,", ",pais.nombrep) AS cpais'),'ciudad.idciudad')
+                      ->where('idciudad','LIKE','%'.$ciudadP.'%')
+                      ->first();
 
-          $cto = DB::table('ciudad')
-                    ->join('pais','idpais','=','pais_idpais')
-                    ->select(DB::raw('concat(ciudad.nombrec,", ",pais.nombrep) AS cpais'),'ciudad.idciudad')
-                    ->where('idciudad','LIKE','%'.$ciudadP.'%')
-                    ->first();
+            $ciud = DB::table('ciudad')
+            ->join('pais','idpais','=','pais_idpais')
+            ->select('ciudad.nombrec','pais.nombrep','ciudad.idciudad')
+            ->where('idciudad','LIKE','%'.$ciudadD.'%')
+            ->first();
 
-           $ciud = DB::table('ciudad')
-          ->join('pais','idpais','=','pais_idpais')
-          ->select('ciudad.nombrec','pais.nombrep','ciudad.idciudad')
-          ->where('idciudad','LIKE','%'.$ciudadD.'%')
-          ->first();
+            $ciup = DB::table('ciudad')
+            ->join('pais','idpais','=','pais_idpais')
+            ->select('ciudad.nombrec','pais.nombrep','ciudad.idciudad')
+            ->where('idciudad','LIKE','%'.$ciudadP.'%')
+            ->first();
 
-           $ciup = DB::table('ciudad')
-          ->join('pais','idpais','=','pais_idpais')
-          ->select('ciudad.nombrec','pais.nombrep','ciudad.idciudad')
-          ->where('idciudad','LIKE','%'.$ciudadP.'%')
-          ->first();
-
-          $destinos = DB::table('aerolipu as aerli')
-          ->join('aerpuertos as ae','aerpuerto_id','=','idaerpuerto')
-          ->join('aerolineas as a','aerolinea_id','=','idaerolinea')
-          ->join('aerpuertos as aep','aerpuertos_idaerpuerto','=','aep.idaerpuerto')
-          ->select('ae.nombrepu as aeropuerto','a.nombreli as aerolinia','aep.nombrepu as destino','ae.ciudad_idciudad as cinicio','aep.ciudad_idciudad as cdestino','id_aerolipu')
-          ->where('ae.ciudad_idciudad','LIKE','%'.$ciudadD.'%')
-          ->where('aep.ciudad_idciudad','LIKE','%'.$ciudadP.'%')
-          ->get()->toArray();
+            $destinos = DB::table('aerolipu as aerli')
+            ->join('aerpuertos as ae','aerpuerto_id','=','idaerpuerto')
+            ->join('aerolineas as a','aerolinea_id','=','idaerolinea')
+            ->join('aerpuertos as aep','aerpuertos_idaerpuerto','=','aep.idaerpuerto')
+            ->select('ae.nombrepu as aeropuerto','a.nombreli as aerolinia','aep.nombrepu as destino','ae.ciudad_idciudad as cinicio','aep.ciudad_idciudad as cdestino','id_aerolipu')
+            ->where('ae.ciudad_idciudad','LIKE','%'.$ciudadD.'%')
+            ->where('aep.ciudad_idciudad','LIKE','%'.$ciudadP.'%')
+            ->get()->toArray();
 
 
-    /*Calcular los kilometros en los paises
-                    $unit = "K";
-                    $addressFrom = $ciud->nombrep;
-                    $addressTo = $ciup->nombrep;
+        /*Calcular los kilometros en los paises
+                      $unit = "K";
+                      $addressFrom = $ciud->nombrep;
+                      $addressTo = $ciup->nombrep;
 
-                    $formattedAddrFrom = str_replace(' ','+',$addressFrom);
-                    $formattedAddrTo = str_replace(' ','+',$addressTo);
-                    
-                    //Send request and receive json data
-                    $geocodeFrom = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false');
-                    $outputFrom = json_decode($geocodeFrom);
-                    $geocodeTo = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrTo.'&sensor=false');
-                    $outputTo = json_decode($geocodeTo);
-                    
-                    //Get latitude and longitude from geo data
-                    $latitudeFrom = $outputFrom->results[0]->geometry->location->lat;
-                    $longitudeFrom = $outputFrom->results[0]->geometry->location->lng;
-                    $latitudeTo = $outputTo->results[0]->geometry->location->lat;
-                    $longitudeTo = $outputTo->results[0]->geometry->location->lng;
-                    
-                    //Calculate distance from latitude and longitude
-                    $theta = $longitudeFrom - $longitudeTo;
-                    $dist = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) +  cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
+                      $formattedAddrFrom = str_replace(' ','+',$addressFrom);
+                      $formattedAddrTo = str_replace(' ','+',$addressTo);
+                      
+                      //Send request and receive json data
+                      $geocodeFrom = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false');
+                      $outputFrom = json_decode($geocodeFrom);
+                      $geocodeTo = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrTo.'&sensor=false');
+                      $outputTo = json_decode($geocodeTo);
+                      
+                      //Get latitude and longitude from geo data
+                      $latitudeFrom = $outputFrom->results[0]->geometry->location->lat;
+                      $longitudeFrom = $outputFrom->results[0]->geometry->location->lng;
+                      $latitudeTo = $outputTo->results[0]->geometry->location->lat;
+                      $longitudeTo = $outputTo->results[0]->geometry->location->lng;
+                      
+                      //Calculate distance from latitude and longitude
+                      $theta = $longitudeFrom - $longitudeTo;
+                      $dist = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) +  cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
 
-                    $dist = acos($dist);
-                    $dist = rad2deg($dist);
-                    $miles = $dist * 60 * 1.1515;
-                    $unit = strtoupper($unit);
+                      $dist = acos($dist);
+                      $dist = rad2deg($dist);
+                      $miles = $dist * 60 * 1.1515;
+                      $unit = strtoupper($unit);
 
-                    $miles * 1.609344;*/
+                      $miles * 1.609344;*/
 
-                    $miles = 123;
-      
+                      $miles = 120;
 
-    /*CALCULOS DE SERVICIOS*/
-        $gas = $miles*3;
-        $tiempo = round($miles/300,2);
- 
-        $gaspcp = ($gas/455)*($tiempo*0.50);
 
-       /* dd($tiempo);
+        /*CALCULOS DE SERVICIOS*/
+          $gas = $miles*3;
+          $tiempo = round($miles/300,2);
 
-        for($i=$tiempo; $i<=0; $i--){
-           do {// do while impreme 1 ves en caso de que mo se cumpla la funcion 
-             
-           } while ( $q <= 25);
+          $gaspcp = ($gas/455)*($tiempo*0.50);
 
-        }
-       */
-       /* CLASS */
-          $personas= $adultos+ $ninos; 
-       
-          if ($clase == "Economico"){
-            $class = "Economic Class";
+        /* dd($tiempo);
 
-           
+          for($i=$tiempo; $i<=0; $i--){
+            do {// do while impreme 1 ves en caso de que mo se cumpla la funcion 
+              
+            } while ( $q <= 25);
 
-             $servicios = (236+$gaspcp)*$personas;
-
-             $total = round($servicios);      
-          }elseif ($clase == "Ejecutiva") {
-            $class = "Executive Class";     
-
-            $servicios = (255+$gaspcp)*$personas;
-
-            $total = round($servicios); 
-          } else {  
-            $servicios = (276+$gaspcp)*$personas;
-
-            $total = round($servicios); 
-            $class = "First Class";
           }
+        */
+        /* CLASS */
+            $personas= $adultos+ $ninos; 
+        
+            if ($clase == "Economico"){
+              $class = "Economic Class";
+
             
-        /*$dvuelos=[
-        'fecha'=>$request->input('fecha'),
-        'hora'=>$request->input('hora'),
-        'km'=>$miles
-        ];*/
+
+              $servicios = (236+$gaspcp)*$personas;
+
+              $total = round($servicios);      
+            }elseif ($clase == "Ejecutiva") {
+              $class = "Executive Class";     
+
+              $servicios = (255+$gaspcp)*$personas;
+
+              $total = round($servicios); 
+            } else {  
+              $servicios = (276+$gaspcp)*$personas;
+
+              $total = round($servicios); 
+              $class = "First Class";
+            }
+              
+          /*$dvuelos=[
+          'fecha'=>$request->input('fecha'),
+          'hora'=>$request->input('hora'),
+          'km'=>$miles
+          ];*/
 
 
-        /*PARAMETROS PARA VIEW*/
-            return view('pg.reserva',['cfrom'=>$cfrom,
-                                      'cto'=>$cto,
-                                      'hora'=>$hora,
-                                      'fecha'=>$fecha, 
-                                      'total'=>$total,
-                                      'tiempo'=>$tiempo,
-                                      'destinos'=>$destinos,
-                                      'class'=>$class,
-                                      'personas'=>$personas]);
+          /*PARAMETROS PARA VIEW*/
+              return view('pg.reserva',['cfrom'=>$cfrom,
+                                        'cto'=>$cto,
+                                        'hora'=>$hora,
+                                        'fecha'=>$fecha, 
+                                        'total'=>$total,
+                                        'tiempo'=>$tiempo,
+                                        'destinos'=>$destinos,
+                                        'class'=>$class,
+                                        'personas'=>$personas]);
 
-        /*INVESTIGACION
-            $1.40 por galon de avion 
+          /*INVESTIGACION
+              $1.40 por galon de avion 
 
-            300 galones por 100 km 
-            
-            $250 pilotos 
+              300 galones por 100 km 
+              
+              $250 pilotos 
 
-            $150 azafatas
+              $150 azafatas
 
-            455 pasajeros en cada avion 
+              455 pasajeros en cada avion 
 
-            Econimico
-            empleaods => 2p 6a: $1,400  por cada persona se cobra $3
-            camida    => $13
-            otros     => $20
-            Total de $236
+              Econimico
+              empleaods => 2p 6a: $1,400  por cada persona se cobra $3
+              camida    => $13
+              otros     => $20
+              Total de $236
 
 
-            Ejecutiva
-            empleaods => 3p 9a:  $2,100 por cada persona se cobra $5
-            comida    => $20
-            otros     => $30
-            Total de $255
+              Ejecutiva
+              empleaods => 3p 9a:  $2,100 por cada persona se cobra $5
+              comida    => $20
+              otros     => $30
+              Total de $255
 
-            Primera
-            empleaods => 3p 10a: $2,250 por cada persona se cobra $6
-            comida    => $30
-            otros     => $40
-            Total de $276
+              Primera
+              empleaods => 3p 10a: $2,250 por cada persona se cobra $6
+              comida    => $30
+              otros     => $40
+              Total de $276
 
-            300 km * hora
+              300 km * hora
 
-            */
-
-    }
-    public function edit(Request $request,$destino){
+              */
+      }else{
+        return redirect()->back();
+      }
+        }
+   public function edit(Request $request,$destino){
 
       $destino=$destino;
       $depais=$request->get('depais');
